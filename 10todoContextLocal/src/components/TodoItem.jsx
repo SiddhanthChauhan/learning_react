@@ -16,7 +16,7 @@ function TodoItem({ todo }) {
     }
 
     const {updateTodo , deleteTodo, toggleComplete} = useTodo()
-    
+
 
     return (
         <div
