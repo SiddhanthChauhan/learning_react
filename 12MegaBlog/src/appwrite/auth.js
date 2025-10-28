@@ -12,9 +12,11 @@ export class AuthService {
         this.account = new Account(this.client);
     }
 
+    // console.log(Object.getOwnPropertyNames(Object.getPrototypeOf(this.account)));
+
     async createAccount({email,password,name}){
         try {
-            const userAccount = await this.account.createSession(ID.unique(), email, password, name)
+            const userAccount = await this.account.create(ID.unique(), email, password, name)
             if(userAccount){
                 //call another method (such as login)
                 return this.login({email,password})
@@ -29,7 +31,7 @@ export class AuthService {
 
     async login({email,password}){
         try {
-            return await this.account.createUser(email,password);
+            return await this.account.createEmailPasswordSession(email,password);
         } catch (error) {
             throw error;
         }
