@@ -1,3 +1,5 @@
+//This RTE (Rich Text Editor) component is basically a wrapper around the 
+// TinyMCE text editor that integrates it smoothly with React Hook Form.
 import React from 'react'
 import {Editor } from '@tinymce/tinymce-react';
 import {Controller } from 'react-hook-form';
@@ -10,7 +12,7 @@ export default function RTE({name, control, label, defaultValue =""}) {
 
     <Controller
     name={name || "content"}
-    control={control}
+    control={control} //gives control to parent element
     render={({field: {onChange}}) => (
         <Editor
         apiKey={import.meta.env.VITE_TINYMCE_API_KEY}

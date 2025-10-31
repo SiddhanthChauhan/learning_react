@@ -12,7 +12,6 @@ export class AuthService {
         this.account = new Account(this.client);
     }
 
-    // console.log(Object.getOwnPropertyNames(Object.getPrototypeOf(this.account)));
 
     async createAccount({email,password,name}){
         try {
@@ -21,7 +20,7 @@ export class AuthService {
                 //call another method (such as login)
                 return this.login({email,password})
             }
-            else{
+            else{ // not required as appwrite automatically retruns user object or error if it doesnt create
                 return userAccount;
             }
         } catch (error) {

@@ -18,7 +18,9 @@ function Login() {
             const session = await authService.login(data)
             if (session) {
                 const userData = await authService.getCurrentUser()
-                if(userData) dispatch(authLogin(userData));
+                if(userData) dispatch(authLogin({userData}));
+                //#BUG FIX: earlier this was "dispatch(authLogin(userData));"
+                //now action.payload.userdate recieves userData not { userData }
                 navigate("/")
             }
         } catch (error) {

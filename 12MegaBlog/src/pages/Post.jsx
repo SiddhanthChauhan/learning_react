@@ -24,9 +24,9 @@ export default function Post() {
     }, [slug, navigate]);
 
     const deletePost = () => {
-        appwriteService.deletePost(post.$id).then((status) => {
-            if (status) {
-                appwriteService.deleteFile(post.featuredImage);
+        appwriteService.deletePost(post.$id).then((status) => {//removing post
+            if (status) {// if removal successful
+                appwriteService.deleteFile(post.featuredImage);//remove the associated image too (no orphan files)
                 navigate("/");
             }
         });

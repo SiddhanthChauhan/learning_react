@@ -1,3 +1,5 @@
+//A similar file like auth.js that provides service for our blog website
+//where we can do the same features but for our blog.
 import conf from '../conf/conf.js'
 import { Client , ID, Databases, Storage, Query } from 'appwrite';
 
@@ -14,8 +16,7 @@ export class Service{
         this.bucket = new Storage(this.client)
     }
 
-//     console.log("Appwrite URL:", import.meta.env.VITE_APPWRITE_URL);
-// console.log("Project ID:", import.meta.env.VITE_APPWRITE_PROJECT_ID);
+
 
 
     async createPost({title, slug , content, featuredImage, status, userId}){
@@ -38,6 +39,8 @@ export class Service{
     }
 
     async updatePost(slug,{title, content, featuredImage, status}){
+        //slug taken seperately becuase we need toidentify first what are we updating , for that we are
+        //requiring slug.
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
@@ -62,7 +65,7 @@ export class Service{
                 conf.appwriteCollectionId,
                 slug,
             ); 
-           return true;
+           return true; //just to get a value at frontend if something should be handled using this info
         } catch (error) {
             console.log("Appwrite serive :: deletePost : error: ",error);
             return false;
@@ -96,7 +99,6 @@ export class Service{
         }
     }
 
-    //file upload services
 
     async uploadFile(file){
         try {

@@ -1,6 +1,8 @@
 import React, {useId} from 'react'
 
 const Input = React.forwardRef(function Input({
+    //forward ref : This lets parent components (or form libraries) 
+    // directly access the underlying <input> element using a ref
     label,
     type = "text",
     className = "",

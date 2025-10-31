@@ -19,10 +19,14 @@ export default function PostForm({ post }) {
     const userData = useSelector((state) => state.auth.userData);
 
     const submit = async (data) => {
+        // if (!userData) {
+        //     alert("You must be logged in to create a post.");
+        //     return;
+        // }
         if (post) {
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
 
-            if (file) {
+            if (file) {//delete file of prev image once a new image is uploaded
                 appwriteService.deleteFile(post.featuredImage);
             }
 
@@ -35,11 +39,13 @@ export default function PostForm({ post }) {
                 navigate(`/post/${dbPost.$id}`);
             }
         } else {
-            const file = await appwriteService.uploadFile(data.image[0]);
+            const file = await appwriteService.uploadFile(data.image[0]);//why different from if block?
+            //because image is a required attribute , thats why
+            
 
             if (file) {
                 const fileId = file.$id;
-                data.featuredImage = fileId;
+                data.featuredImage = fileId;//why
                 const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
 
                 if (dbPost) {

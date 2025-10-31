@@ -10,6 +10,7 @@ function Button({
 }) {
   return (
     <button className={`px-4 py-2 rounded-lg ${bgColor} ${textColor} ${className}`} {...props}>
+        {/* props given so that if user passes any extra attribute even that is included */}
         {children}
     </button>
   )
