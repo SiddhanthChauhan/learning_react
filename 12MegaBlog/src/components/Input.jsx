@@ -8,6 +8,8 @@ const Input = React.forwardRef(function Input({
     className = "",
     ...props
 }, ref) {
+    //could add id = providedId as default if provided to
+    // allow users to make readable IDs
     const id = useId()
     return (
         <div className="w-full">
@@ -29,3 +31,8 @@ const Input = React.forwardRef(function Input({
 })
 
 export default Input
+
+// This Input component renders a styled input 
+// with an optional accessible label, and forwards 
+// refs so parents/form libs can directly control 
+// the underlying <input> DOM node.

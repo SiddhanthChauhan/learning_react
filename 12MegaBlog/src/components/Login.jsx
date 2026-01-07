@@ -56,9 +56,18 @@ function Login() {
                 placeholder="Enter your email"
                 type="email"
                 {...register("email", {
-                    required: true,
+                    //Why register is SPLIT?
+// Why is it “required to split” register across separate Input components?
+// Because each field must register itself with:
+
+// a unique name ("email", "password")
+// its own validation rules
+// There isn’t one “global register” you do once for the whole form. Registration is per input field, so each <Input /> needs its own ...register("fieldName", rules).
+
+                
+                      required: true,
                     validate: {
-                        matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                        matchPattern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                         "Email address must be a valid address",
                     }
                 })}

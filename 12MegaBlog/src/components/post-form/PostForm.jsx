@@ -41,7 +41,7 @@ export default function PostForm({ post }) {
         } else {
             const file = await appwriteService.uploadFile(data.image[0]);//why different from if block?
             //because image is a required attribute , thats why
-            
+
 
             if (file) {
                 const fileId = file.$id;
@@ -107,7 +107,7 @@ export default function PostForm({ post }) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={appwriteService.getFileView(post.featuredImage)}
                             alt={post.title}
                             className="rounded-lg"
                         />
